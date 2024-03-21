@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "FarbaksCog-web:build:production"
+              "buildTarget": "FarbaksCog-web:build:production"
             },
             "development": {
-              "browserTarget": "FarbaksCog-web:build:development"
+              "buildTarget": "FarbaksCog-web:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "FarbaksCog-web:build"
+            "buildTarget": "FarbaksCog-web:build"
           }
         },
         "test": {
