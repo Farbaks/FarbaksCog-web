@@ -38,16 +38,22 @@ body {
     min-height: 100vh;
     display: flex;
     .right {
-        width: 40%;
-        min-height: 100vh;
+        width: 38%;
+        height: 100vh;
         position: fixed;
         top: 0;
         right: 0;
         background: #FFF;
-        padding: 100px 70px 0;
+        padding: 100px 70px;
         display: flex;
         flex-flow: column;
         overflow-y: auto;
+        @media screen and (max-width: 768px) {
+            width: 100%;
+        }
+        @media screen and (max-width: 540px) {
+            padding: 100px 20px;
+        }
         .logo {
             width: 130px;
             margin-bottom: 50px;
