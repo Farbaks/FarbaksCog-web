@@ -1,0 +1,16 @@
+.button-primary {
+    height: 45px;
+    background: var(--primary);
+    border: 1px solid var(--priseapp-teal);
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #FFF;
+    padding: 0 24px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all ease 0.4s;
+    &:hover {
+        transform: scale(1.02);
+    }
+}

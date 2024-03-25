@@ -1,0 +1,44 @@
+<div class="auth-page">
+    <div class="left">
+        <ngx-particles [id]="id" [options]="particlesOptions" [particlesInit]="particlesInit"></ngx-particles>
+    </div>
+    <div class="right">
+        <div class="logo">
+            <img src="assets/images/logo.svg" />
+        </div>
+        <h1 class="">Create Account</h1>
+        <p>Sign up to create your account.</p>
+
+        <form>
+            <div class="input-box">
+                <label>Username</label>
+                <div class="input-container full-width">
+                    <input type="text" placeholder="Enter your username" />
+                </div>
+            </div>
+            <div class="input-box">
+                <label>Age</label>
+                <div class="input-container full-width">
+                    <input type="number" placeholder="Enter your age" />
+                </div>
+            </div>
+            <div class="input-box">
+                <label>Gender</label>
+                <div class="input-container full-width">
+                    <select>
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-box">
+                <label>Password</label>
+                <div class="input-container full-width">
+                    <input type="password" placeholder="* * * * * * * *" />
+                </div>
+            </div>
+            <button class="button-primary full-width">Sign in</button>
+            <p class="sub-text">Already have an account? <a routerLink="/signin">Login</a></p>
+        </form>
+    </div>
+</div>

@@ -1,1 +1,94 @@
 /* You can add global styles to this file, and also import other style files */
+@import "assets/styles/_variables.scss";
+@import "assets/styles/_buttons.scss";
+@import "assets/styles/_form.scss";
+@import "assets/styles/_fonts.scss";
+
+
+html,
+body {
+    position: relative;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-display: swap;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+
+    :is(h1, h2, h3, h4, h5, h5, p) {
+        margin: 0;
+    }
+}
+
+* {
+    line-height: 1.5;
+    transition: all ease 0.4s;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.auth-page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    .right {
+        width: 40%;
+        min-height: 100vh;
+        position: fixed;
+        top: 0;
+        right: 0;
+        background: #FFF;
+        padding: 100px 70px 0;
+        display: flex;
+        flex-flow: column;
+        overflow-y: auto;
+        .logo {
+            width: 130px;
+            margin-bottom: 50px;
+            img {
+                width: 100%;
+            }
+        }
+        h1 {
+            width: 100%;
+            font-size: 32px;
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--black-2);
+            text-align: left;
+            margin-bottom: 8px;
+        }
+        p {
+            width: 100%;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--black-4);
+            text-align: left;
+        }
+        form {
+            width: 100%;
+            margin-top: 40px;
+            button {
+                margin-top: 32px;
+            }
+            .sub-text {
+                width: 100%;
+                margin-top: 16px;
+                font-size: 14px;
+                font-weight: 400;
+                text-align: center;
+                a {
+                    color: var(--primary);
+                    font-weight: 500;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}

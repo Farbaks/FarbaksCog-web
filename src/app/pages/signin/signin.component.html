@@ -1,0 +1,29 @@
+<div class="auth-page">
+    <div class="left">
+        <ngx-particles [id]="id" [options]="particlesOptions" [particlesInit]="particlesInit"></ngx-particles>
+    </div>
+    <div class="right">
+        <div class="logo">
+            <img src="assets/images/logo.svg" />
+        </div>
+        <h1 class="">Sign In</h1>
+        <p>Sign in to access your account.</p>
+
+        <form>
+            <div class="input-box">
+                <label>Username</label>
+                <div class="input-container full-width">
+                    <input type="text" placeholder="Enter your username" />
+                </div>
+            </div>
+            <div class="input-box">
+                <label>Password</label>
+                <div class="input-container full-width">
+                    <input type="password" placeholder="* * * * * * * *" />
+                </div>
+            </div>
+            <button class="button-primary full-width">Sign in</button>
+            <p class="sub-text">Don't have an account? <a routerLink="/signup">Create one</a></p>
+        </form>
+    </div>
+</div>
