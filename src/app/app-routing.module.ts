@@ -12,7 +12,7 @@ const routes: Routes = [
     },
     {
         path: 'dashboard',
-        loadComponent: () => import("./pages/dashboard/home/home.component").then(m => m.HomeComponent),
+        loadChildren: () => import("./pages/dashboard/layout/layout.component").then(m => m.DASHBOARD_ROUTES),
     },
     {
         path: '',

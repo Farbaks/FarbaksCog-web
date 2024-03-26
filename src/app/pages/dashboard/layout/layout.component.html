@@ -1,0 +1,25 @@
+<div class="page">
+    <aside>
+        <div class="logo">
+            <img src="assets/images/logo.svg" />
+        </div>
+        <nav>
+            <div class="item" routerLink="/dashboard" [routerLinkActiveOptions]="{ exact: true}"
+                routerLinkActive="active">
+                <div class="icon">
+                    <img src="assets/images/home.svg" />
+                </div>
+                <p>Home</p>
+            </div>
+            <div class="item logout-item" routerLink="/signin">
+                <div class="icon">
+                    <img src="assets/images/logout.svg" />
+                </div>
+                <p>Logout</p>
+            </div>
+        </nav>
+    </aside>
+    <main>
+        <router-outlet></router-outlet>
+    </main>
+</div>

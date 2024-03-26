@@ -1,0 +1,85 @@
+.main-page {
+    width: 100%;
+    padding: 30px 140px 30px 40px;
+
+    .page-title {
+        p {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--grey-3);
+            line-height: 1;
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 35px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+    }
+
+    .info-con {
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        gap: 24px;
+        margin-top: 20px;
+
+        .item,
+        .detail-item {
+            padding: 18px 24px;
+            border-radius: 10px;
+            display: flex;
+            flex-flow: column;
+            box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border: solid 1px #EAEDF2;
+
+            h2 {
+                font-size: 16px;
+                font-weight: 500;
+                color: var(--black-4);
+                padding-bottom: 12px;
+                border-bottom: solid 1px #45C680;
+                display: flex;
+                align-items: center;
+                img {
+                    width: 18px;
+                    margin-right: 10px;
+                }
+            }
+
+            p {
+                width: 100%;
+                font-size: 48px;
+                font-weight: 700;
+                color: var(--black-3);
+                text-align: center;
+                margin-bottom: 10px;
+            }
+        }
+
+        .detail-item {
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            p {
+                font-size: 14px;
+                font-weight: 500;
+                text-align: left;
+                margin-bottom: 8px;
+                display: flex;
+                align-items: center;
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+                img {
+                    width: 18px;
+                    margin-right: 10px;
+                }
+                b {
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+}
