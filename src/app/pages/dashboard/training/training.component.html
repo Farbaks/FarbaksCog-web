@@ -1,1 +1,18 @@
-<p>training works!</p>
+<div class="main-page">
+    <div class="page-title">
+        <p>👋 Welcome, Farbaks</p>
+        <h1>
+            <ng-container *ngIf="trainingType == 'assessment'">
+                TMT Cognitive Assessment
+            </ng-container>
+            
+        </h1>
+    </div>
+    
+    <!-- Body -->
+    <main>
+        <ng-container *ngIf="trainingType == 'assessment'">
+            <app-tmt-assessment class="full-width"></app-tmt-assessment>
+        </ng-container>
+    </main>
+</div>

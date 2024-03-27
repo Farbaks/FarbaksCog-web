@@ -1,0 +1,37 @@
+<div class="training-steps">
+    <div class="step-info" *ngIf="step == 1">
+        <h1>TMT</h1>
+        <p>
+            Welcome to the Trail Making Test (TMT). This is a cognitive test of visual attention and task switching.
+            This
+            test can provide information about visual search speed, scanning, speed of processing, mental flexibility,
+            and executive functioning. It comprises of two parts - TMT A and B.
+        </p>
+        <button class="button-primary" (click)="goToNextStep()">Next</button>
+    </div>
+    <div class="step-info" *ngIf="step == 2">
+        <h1>TMT A</h1>
+        <p>
+            Welcome to the Trail Making Test (TMT) A. This test consists of 25 circles numbered 1 - 25. You are expected
+            to connect the numbers by tapping on each circle in ascending order. This is a timed test and should be
+            completed as quickly as possible.
+        </p>
+        <div class="actions">
+            <button class="button-cancel" (click)="goToPreviousStep()">Back</button>
+            <button class="button-primary" (click)="loadTMTA()">Start Test</button>
+        </div>
+    </div>
+    <!--  -->
+    <ng-container *ngIf="step == 3">
+        <p class="time">TIME: <b>{{elapsedTime}}</b></p>
+        <main class="step">
+            <div class="parent-box" #parentBox>
+                <div class="tmt-circle" [class.selected]="itemIsSelected(item.id)" [class.wrong]="item.wrong" [style.top]="item.top" [style.left]="item.left" *ngFor="let item of items"
+                (click)="selectItem(item)">
+                    {{item.id}}</div>
+                <canvas #TMTACanvas id="canvas"></canvas>
+            </div>
+        </main>
+    </ng-container>
+    
+</div>

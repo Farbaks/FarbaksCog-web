@@ -23,7 +23,7 @@
         display: flex;
         flex-flow: row wrap;
         gap: 24px;
-        margin-top: 20px;
+        margin-top: 40px;
 
         .item,
         .detail-item {
@@ -35,7 +35,7 @@
             border: solid 1px #EAEDF2;
 
             h2 {
-                font-size: 16px;
+                font-size: 14px;
                 font-weight: 500;
                 color: var(--black-4);
                 padding-bottom: 12px;
@@ -44,7 +44,7 @@
                 align-items: center;
                 img {
                     width: 18px;
-                    margin-right: 10px;
+                    margin-right: 6px;
                 }
             }
 
@@ -79,6 +79,38 @@
                 b {
                     margin-left: 5px;
                 }
+            }
+        }
+    }
+    .trainings {
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        $gap: 20px;
+        gap: $gap;
+        .training-item {
+            width: calc((100% - (2 * $gap)) / 3);
+            max-width: 200px;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            padding: 32px 24px;
+            border-radius: 10px;
+            border: solid 1px #EAEDF2;
+            cursor: pointer;
+            &:hover {
+                box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+            }
+            .icon {
+                width: 80px;
+                margin-bottom: 20px;
+                img {
+                    width: 100%;
+                }
+            }
+            h3 {
+                font-size: 16px;
+                font-weight: 500;
             }
         }
     }
