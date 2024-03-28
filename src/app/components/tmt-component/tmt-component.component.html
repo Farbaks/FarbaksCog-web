@@ -1,0 +1,8 @@
+<div class="parent-box" #parentBox>
+    <div class="tmt-circle" [class.selected]="itemIsSelected(item.id)" [class.wrong]="item.wrong"
+    [class.active]="itemIsSelected(item.id) && (selectedItems.length == i+1)"
+        [style.top]="item.top" [style.left]="item.left" *ngFor="let item of items; index as i"
+        (click)="selectItem(item, i)">
+        {{item.id}}</div>
+    <canvas #TMTACanvas id="canvas"></canvas>
+</div>

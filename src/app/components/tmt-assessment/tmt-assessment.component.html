@@ -5,7 +5,7 @@
             Welcome to the Trail Making Test (TMT). This is a cognitive test of visual attention and task switching.
             This
             test can provide information about visual search speed, scanning, speed of processing, mental flexibility,
-            and executive functioning. It comprises of two parts - TMT A and B.
+            and executive functioning. It comprises of two parts - <b>TMT A and B</b>.
         </p>
         <button class="button-primary" (click)="goToNextStep()">Next</button>
     </div>
@@ -18,20 +18,74 @@
         </p>
         <div class="actions">
             <button class="button-cancel" (click)="goToPreviousStep()">Back</button>
-            <button class="button-primary" (click)="loadTMTA()">Start Test</button>
+            <button class="button-primary" (click)="loadTMT()">Start Test</button>
         </div>
     </div>
-    <!--  -->
+    <!-- TMT A  -->
     <ng-container *ngIf="step == 3">
-        <p class="time">TIME: <b>{{elapsedTime}}</b></p>
+        <p class="time">TIME: <b>{{elapsedTime.toFixed(2)}} s</b></p>
         <main class="step">
-            <div class="parent-box" #parentBox>
-                <div class="tmt-circle" [class.selected]="itemIsSelected(item.id)" [class.wrong]="item.wrong" [style.top]="item.top" [style.left]="item.left" *ngFor="let item of items"
-                (click)="selectItem(item)">
-                    {{item.id}}</div>
-                <canvas #TMTACanvas id="canvas"></canvas>
-            </div>
+            <app-tmt-component tmtType="A" (testCompleted)="singleAssessmentCompleted()"></app-tmt-component>
         </main>
     </ng-container>
-    
+
+    <div class="step-info" *ngIf="step == 4">
+        <h1>Congratulations!!!</h1>
+        <p>
+            You have completed the Trail Making Test (TMT) A. Your completion time is <b>{{elapsedTime.toFixed(2)}}
+                s</b>
+        </p>
+        <div class="actions">
+            <button class="button-primary" (click)="goToNextStep()">Next</button>
+        </div>
+    </div>
+
+    <div class="step-info" *ngIf="step == 5">
+        <h1>TMT B</h1>
+        <p>
+            Next is the Trail Making Test (TMT) B. This test consists of 25 circles numbered 1 - 25. As in
+            Part A, you're expected to draw lines to connect the circles in an ascending pattern, but with the added
+            task of alternating between the numbers and letters (i.e., 1-A-2-B-3-C, etc.)
+        </p>
+        <div class="actions">
+            <button class="button-cancel" (click)="goToPreviousStep()">Back</button>
+            <button class="button-primary" (click)="loadTMT()">Start Test</button>
+        </div>
+    </div>
+
+    <!-- TMT B  -->
+    <ng-container *ngIf="step == 6">
+        <p class="time">TIME: <b>{{elapsedTime.toFixed(2)}} s</b></p>
+        <main class="step">
+            <app-tmt-component tmtType="B" (testCompleted)="singleAssessmentCompleted()"></app-tmt-component>
+        </main>
+    </ng-container>
+
+    <div class="step-info" *ngIf="step == 7">
+        <h1>Congratulations!!!</h1>
+        <p>
+            You have completed the Trail Making Test (TMT) B. Your completion time is <b>{{elapsedTime.toFixed(2)}}
+                s</b>
+        </p>
+        <div class="actions">
+            <button class="button-primary" (click)="goToNextStep()">Next</button>
+        </div>
+    </div>
+
+    <div class="step-info" *ngIf="step == 8">
+        <h1>Assessment Complete!!</h1>
+        <p>
+            You have completed the Trail Making Test (TMT). Your completion time is as follows:
+            <br />
+            TMT A: <b>{{time.tmtATime.toFixed(2)}} s</b>
+            <br>
+            TMT B: <b>{{time.tmtBTime.toFixed(2)}} s</b>
+            <br>
+            You can now continue the cognitive training program!
+        </p>
+        <div class="actions">
+            <button class="button-primary" (click)="cogAssessmentComplete()">Go to home page</button>
+        </div>
+    </div>
+
 </div>
