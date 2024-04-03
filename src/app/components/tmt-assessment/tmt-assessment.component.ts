@@ -3,14 +3,6 @@ import { Component } from '@angular/core';
 import { TmtComponentComponent } from '../tmt-component/tmt-component.component';
 import { Router } from '@angular/router';
 
-type TMTCircle = {
-    id: number,
-    left: string,
-    top: string,
-    wrong: boolean,
-    position: { x: number, y: number }
-}
-
 @Component({
     selector: 'app-tmt-assessment',
     standalone: true,
@@ -26,8 +18,8 @@ export class TmtAssessmentComponent {
     startTime: any;
     timerInterval: any;
     elapsedTime: number = 0;
-    ctx: any;
     time: { tmtATime: number, tmtBTime: number} = { tmtATime: 0, tmtBTime: 0};
+    gameStep: 'loading' | 'display' = 'loading';
     constructor(
         private router: Router
     ) {
@@ -44,9 +36,14 @@ export class TmtAssessmentComponent {
 
     loadTMT() {
         this.goToNextStep();
+        this.gameStep = 'loading';
         setTimeout(() => {
-            this.startTimer();
-        }, 100);
+            this.gameStep = 'display';
+            
+            setTimeout(() => {
+                this.startTimer();
+            }, 100);
+        }, 3000);
     }
 
     startTimer(): void {

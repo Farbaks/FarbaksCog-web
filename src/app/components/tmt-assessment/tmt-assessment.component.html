@@ -23,10 +23,21 @@
     </div>
     <!-- TMT A  -->
     <ng-container *ngIf="step == 3">
-        <p class="time">TIME: <b>{{elapsedTime.toFixed(2)}} s</b></p>
-        <main class="step">
-            <app-tmt-component tmtType="A" (testCompleted)="singleAssessmentCompleted()"></app-tmt-component>
-        </main>
+        <ng-container *ngIf="gameStep == 'loading'">
+            <br><br>
+            <div class="words">
+                <h3>Starting...</h3>
+                <div class="loader" [style.--timer]="'3s'">
+                    <span class="progress"></span>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="gameStep == 'display'">
+            <p class="time">TIME: <b>{{elapsedTime.toFixed(2)}} s</b></p>
+            <main class="step">
+                <app-tmt-component tmtType="A" (testCompleted)="singleAssessmentCompleted()"></app-tmt-component>
+            </main>
+        </ng-container>
     </ng-container>
 
     <div class="step-info" *ngIf="step == 4">
@@ -55,10 +66,21 @@
 
     <!-- TMT B  -->
     <ng-container *ngIf="step == 6">
-        <p class="time">TIME: <b>{{elapsedTime.toFixed(2)}} s</b></p>
-        <main class="step">
-            <app-tmt-component tmtType="B" (testCompleted)="singleAssessmentCompleted()"></app-tmt-component>
-        </main>
+        <ng-container *ngIf="gameStep == 'loading'">
+            <br><br>
+            <div class="words">
+                <h3>Starting...</h3>
+                <div class="loader" [style.--timer]="'3s'">
+                    <span class="progress"></span>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="gameStep == 'display'">
+            <p class="time">TIME: <b>{{elapsedTime.toFixed(2)}} s</b></p>
+            <main class="step">
+                <app-tmt-component tmtType="B" (testCompleted)="singleAssessmentCompleted()"></app-tmt-component>
+            </main>
+        </ng-container>
     </ng-container>
 
     <div class="step-info" *ngIf="step == 7">

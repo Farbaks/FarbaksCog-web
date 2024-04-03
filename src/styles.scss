@@ -99,3 +99,67 @@ body {
         }
     }
 }
+
+.training-steps {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    margin-top: 100px;
+
+    .step-info {
+        width: 40%;
+        height: auto;
+        max-width: 380px;
+        border: solid 1px #EAEDF2;
+        border-radius: 4px;
+        padding: 20px;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+        h1 {
+            font-size: 30px;
+            font-weight: 600;
+            text-align: center;
+            color: var(--black-3);
+            margin-bottom: 20px;
+        }
+
+        p {
+            text-align: center;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--black-3);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+    }
+
+    .time {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .step {
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: solid 1px #EAEDF2;
+        background: var(--grey-4);
+    }
+}

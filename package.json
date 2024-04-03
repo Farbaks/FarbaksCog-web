@@ -21,6 +21,8 @@
     "@tsparticles/angular": "^3.0.0",
     "@tsparticles/engine": "^3.3.0",
     "@tsparticles/slim": "^3.3.0",
+    "random": "^4.1.0",
+    "random-words": "^2.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "tsparticles": "^3.3.0",

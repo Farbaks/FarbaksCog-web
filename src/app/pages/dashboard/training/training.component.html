@@ -5,6 +5,12 @@
             <ng-container *ngIf="trainingType == 'assessment'">
                 TMT Cognitive Assessment
             </ng-container>
+            <ng-container *ngIf="trainingType == 'words-recall'">
+                Words Recall
+            </ng-container>
+            <ng-container *ngIf="trainingType == 'numbers-recall'">
+                Numbers Recall
+            </ng-container>
             
         </h1>
     </div>
@@ -13,6 +19,12 @@
     <main>
         <ng-container *ngIf="trainingType == 'assessment'">
             <app-tmt-assessment class="full-width"></app-tmt-assessment>
+        </ng-container>
+        <ng-container *ngIf="trainingType == 'words-recall'">
+            <app-words-recall-training class="full-width"></app-words-recall-training>
+        </ng-container>
+        <ng-container *ngIf="trainingType == 'numbers-recall'">
+            <app-numbers-recall-training class="full-width"></app-numbers-recall-training>
         </ng-container>
     </main>
 </div>

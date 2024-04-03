@@ -1,1 +1,76 @@
-<p>numbers-recall-training works!</p>
+<div class="training-steps">
+    <!-- Initial Instructions -->
+    <div class="step-info" *ngIf="step == 1">
+        <h1>Numbers Recall</h1>
+        <p>
+            Welcome to the Numbers Recall training.
+            In this training, you'll be presented with a number for 1 second. After which you have to enter the number
+            in the field provided.
+        </p>
+        <button class="button-primary" (click)="initializeGame()">Begin Training</button>
+    </div>
+
+    <!-- Training step -->
+    <ng-container *ngIf="step == 2">
+        <!-- Loader -->
+        <ng-container *ngIf="gameStep == 'loading'">
+            <div class="words">
+                <h3>Starting round {{currentRound}} of {{numberOfRounds}}</h3>
+                <div class="loader" [style.--timer]="'3s'">
+                    <span class="progress"></span>
+                </div>
+            </div>
+        </ng-container>
+        <!-- Number display -->
+        <ng-container *ngIf="gameStep == 'display'">
+            <div class="words">
+                <h2>{{displayedNumber}}</h2>
+                <div class="loader" [style.--timer]="numberDisplayTimer+'s'">
+                    <span class="progress"></span>
+                </div>
+            </div>
+        </ng-container>
+
+        <!-- Number input -->
+        <div class="answers" *ngIf="gameStep == 'input'">
+            <h1>Enter the Number</h1>
+            <p>
+                (Order and case sensitivity does not matter)
+            </p>
+            <br />
+            <div class="answer-list">
+                <div class="box">
+                    <input type="number" [(ngModel)]="enteredNumber" />
+                </div>
+            </div>
+
+            <br>
+            <button class="button-primary" (click)="submitRoundAnswers()">Submit Number</button>
+        </div>
+
+        <!-- Result display -->
+        <div class="step-info" *ngIf="gameStep == 'end'">
+            <h1>
+                {{correctAnswers[correctAnswers.length - 1].entered ==
+                correctAnswers[correctAnswers.length - 1].displayed ? 'Correct!!!' : 'Wrong...'}}
+            </h1>
+            <p>
+                You have completed round {{currentRound}} out of {{numberOfRounds}}
+                <br>
+                You got the number
+                {{correctAnswers[correctAnswers.length - 1].entered ==
+                correctAnswers[correctAnswers.length - 1].displayed ? 'correct!' : 'wrong...'}}
+                <br>
+                Entered Number: <b>{{correctAnswers[correctAnswers.length - 1].entered}}</b>
+                <br>
+                Displayed Number: <b>{{correctAnswers[correctAnswers.length - 1].displayed}}</b>
+                <ng-container *ngIf="currentRound == numberOfRounds">
+                    <br>
+                    You got {{correctRounds}} rounds correct out of {{numberOfRounds}}
+                </ng-container>
+            </p>
+            <button class="button-primary" (click)="goToNextRound()">
+                {{currentRound < numberOfRounds ? 'Next Round' : 'End Training' }} </button>
+        </div>
+    </ng-container>
+</div>

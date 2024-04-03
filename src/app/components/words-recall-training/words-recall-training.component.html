@@ -1,1 +1,75 @@
-<p>words-recall-training works!</p>
+<div class="training-steps">
+    <!-- Initial Instructions -->
+    <div class="step-info" *ngIf="step == 1">
+        <h1>Words Recall</h1>
+        <p>
+            Welcome to the Words Recall training.
+            In this training, you'll be presented with a list of words, one at a time (each word
+            presented for 1s). After which you have to type as many of the words you can remember. Click the button
+            below to begin the training
+        </p>
+        <button class="button-primary" (click)="initializeGame()">Begin Training</button>
+    </div>
+
+    <!-- Training step -->
+    <ng-container *ngIf="step == 2">
+        <!-- Loader -->
+        <ng-container *ngIf="gameStep == 'loading'">
+            <div class="words">
+                <h3>Starting round {{currentRound}} of {{numberOfRounds}}</h3>
+                <div class="loader" [style.--timer]="'3s'">
+                    <span class="progress"></span>
+                </div>
+            </div>
+        </ng-container>
+        <!-- Words display -->
+        <ng-container *ngIf="gameStep == 'display'">
+            <div class="words" [style.display]="i == selectedWordIndex ? 'flex' : 'none'"
+                *ngFor="let word of words; index as i">
+                <h2>{{word}}</h2>
+                <div class="loader" [style.--timer]="wordDisplayTimer+'s'">
+                    <span class="progress"></span>
+                </div>
+            </div>
+        </ng-container>
+
+        <!-- Words input -->
+        <div class="answers" *ngIf="gameStep == 'input'">
+            <h1>Enter the words</h1>
+            <p>
+                (Order and case sensitivity does not matter)
+            </p>
+            <br />
+            <div class="answer-list">
+                <div class="box" *ngFor="let field of answers; index as i">
+                    <input type="text" [(ngModel)]="field.text" />
+                    <div class="remove" *ngIf="i+1 < answers.length" (click)="removeAnswerField(i)"> - </div>
+                    <button class="button-primary" *ngIf="i+1 == answers.length" (click)="addAnswerField()">Add extra
+                        field</button>
+                </div>
+            </div>
+
+            <br>
+            <button class="button-primary" (click)="submitRoundAnswers()">Submit Words</button>
+        </div>
+
+        <!-- Result display -->
+        <div class="step-info" *ngIf="gameStep == 'end'">
+            <h1>Congratulations!!</h1>
+            <p>
+                You have completed round {{currentRound}} out of {{numberOfRounds}}
+                <br>
+                You got {{correctAnswers[correctAnswers.length - 1].answers.length}} right out of {{words.length}}
+                <br>
+                Correct words: <b>{{correctAnswers[correctAnswers.length - 1].answers.join(', ')}}</b>
+                <br>
+                <ng-container *ngIf="correctAnswers[correctAnswers.length - 1].wrong.length > 0">
+                    Wrong words <b>{{correctAnswers[correctAnswers.length - 1].wrong.join(', ')}}</b>
+                </ng-container>
+               
+            </p>
+            <button class="button-primary" (click)="goToNextRound()">
+                {{currentRound < numberOfRounds ? 'Next Round' : 'End Training' }} </button>
+        </div>
+    </ng-container>
+</div>
