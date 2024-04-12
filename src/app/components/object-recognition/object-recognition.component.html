@@ -1,0 +1,76 @@
+<div class="training-steps">
+    <!-- Initial Instructions -->
+    <div class="step-info" *ngIf="step == 1">
+        <h1>Object recognition</h1>
+        <p>
+            Welcome to the Object recognition training.
+            In this training, you'll be presented with 20 simple shapes to remember. At the end of the sequence, you'll
+            be prompted with yes/no questions asking if the shape appeared in the sequence.
+        </p>
+        <button class="button-primary" (click)="initializeGame()">Begin Training</button>
+    </div>
+
+    <!-- Training step -->
+    <ng-container *ngIf="step == 2">
+        <!-- Loader -->
+        <ng-container *ngIf="gameStep == 'loading'">
+            <div class="words">
+                <h3>Starting round</h3>
+                <div class="loader" [style.--timer]="'3s'">
+                    <span class="progress"></span>
+                </div>
+            </div>
+        </ng-container>
+
+        <!-- AR display -->
+        <ng-container *ngIf="gameStep == 'display'">
+            <div class="ar-display">
+                <div class="ar-con">
+                    <model-viewer camera-orbit="45deg 55deg 2.5m" [src]="selectedShapeCombo.modelUrl"
+                        alt="A 3D model of an astronaut" tone-mapping="commerce" shadow-intensity="1" ar
+                        ar-status="not-presenting" scale="0.035 0.035 0.035" ar-placement="floor">
+                        <button slot="ar-button" id="ar-button">
+                            Click to view shapes in AR
+                        </button>
+                    </model-viewer>
+                </div>
+                <button class="button-primary" (click)="goToQuestions()">Start questions</button>
+            </div>
+        </ng-container>
+
+        <!-- Question -->
+        <ng-container *ngIf="gameStep == 'input'">
+            <div class="ar-question">
+                <div class="image">
+                    <img [src]="'assets/images/ar/shape-'+(questionShapes[selectedShapeIndex].shape)+'.png'" />
+                </div>
+                <p>Did this shape appear on the table?</p>
+                <div class="action-box">
+                    <button class="action"
+                        [class.correct]="(questionShapes[selectedShapeIndex].selectedAnswer == questionShapes[selectedShapeIndex].correctAnswer) && questionShapes[selectedShapeIndex].selectedAnswer == 'yes'"
+                        [class.wrong]="(questionShapes[selectedShapeIndex].selectedAnswer != questionShapes[selectedShapeIndex].correctAnswer) && questionShapes[selectedShapeIndex].selectedAnswer == 'yes'"
+                        (click)="selectAnswer('yes', selectedShapeIndex)">Yes</button>
+                    <button class="action"
+                        [class.correct]="(questionShapes[selectedShapeIndex].selectedAnswer == questionShapes[selectedShapeIndex].correctAnswer) && questionShapes[selectedShapeIndex].selectedAnswer == 'no'"
+                        [class.wrong]="(questionShapes[selectedShapeIndex].selectedAnswer != questionShapes[selectedShapeIndex].correctAnswer) && questionShapes[selectedShapeIndex].selectedAnswer == 'no'"
+                        (click)="selectAnswer('no', selectedShapeIndex)">No</button>
+                </div>
+                <br>
+                <p><b>{{selectedShapeIndex+1}}</b> of {{questionShapes.length}}</p>
+            </div>
+        </ng-container>
+
+        <!-- Result display -->
+        <div class="step-info" *ngIf="gameStep == 'end'">
+            <h1>Congratulations!!</h1>
+            <p>
+                You have completed this training round
+                <br>
+                You got {{totalCorrectAswers}} right out of {{questionShapes.length}}
+                <br>
+                {{totalCorrectAswers < questionShapes.length/2 ? 'Better luck next time...' : 'Great training session!'
+                    }} </p>
+                    <button class="button-primary" (click)="endTraining()">End Training</button>
+        </div>
+    </ng-container>
+</div>

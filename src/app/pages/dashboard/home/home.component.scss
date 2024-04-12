@@ -1,7 +1,9 @@
 .main-page {
     width: 100%;
-    padding: 30px 140px 30px 40px;
-
+    padding: 30px 40px;
+    @media screen and (max-width: 768px) {
+        padding: 30px 20px;
+    }
     .page-title {
         p {
             font-size: 16px;
@@ -15,6 +17,9 @@
             font-size: 35px;
             font-weight: 600;
             color: var(--primary);
+            @media screen and (max-width: 768px) {
+                font-size: 30px;
+            }
         }
     }
 
@@ -22,7 +27,8 @@
         width: 100%;
         display: flex;
         flex-flow: row wrap;
-        gap: 24px;
+        $gap: 20px;
+        gap: $gap;
         margin-top: 40px;
 
         .item,
@@ -33,7 +39,9 @@
             flex-flow: column;
             box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
             border: solid 1px #EAEDF2;
-
+            @media screen and (max-width: 540px) {
+                width: calc((100% -  $gap) / 2);
+            }
             h2 {
                 font-size: 14px;
                 font-weight: 500;
@@ -42,6 +50,9 @@
                 border-bottom: solid 1px #45C680;
                 display: flex;
                 align-items: center;
+                @media screen and (max-width: 768px) {
+                    font-size: 13px;
+                }
                 img {
                     width: 18px;
                     margin-right: 6px;
@@ -55,6 +66,9 @@
                 color: var(--black-3);
                 text-align: center;
                 margin-bottom: 10px;
+                @media screen and (max-width: 768px) {
+                    font-size: 30px;
+                }
             }
         }
 
@@ -62,6 +76,9 @@
             display: flex;
             flex-flow: column;
             justify-content: center;
+            @media screen and (max-width: 540px) {
+                width: 100%;
+            }
             p {
                 font-size: 14px;
                 font-weight: 500;
@@ -98,8 +115,21 @@
             border-radius: 10px;
             border: solid 1px #EAEDF2;
             cursor: pointer;
+            @media screen and (max-width: 768px) {
+                padding: 24px;
+            }
+            @media screen and (max-width: 540px) {
+                width: calc((100% -  $gap) / 2);
+            }
             &:hover {
                 box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+            }
+            &.disabled {
+                opacity: .5;
+                cursor: not-allowed;
+                &:hover {
+                    box-shadow: none;
+                }
             }
             .icon {
                 width: 80px;
@@ -111,6 +141,10 @@
             h3 {
                 font-size: 16px;
                 font-weight: 500;
+                text-align: center;
+                @media screen and (max-width: 768px) {
+                    font-size: 14px;
+                }
             }
         }
     }

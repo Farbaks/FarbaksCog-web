@@ -1,0 +1,97 @@
+.ar-display {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    @media screen and (max-width: 540px) {
+        width: 100%;
+    }
+    .ar-con {
+        width: 100%;
+        border-radius: 8px;
+        border: solid 1px rgb(230, 230, 230);
+        box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+        model-viewer {
+            width: 450px;
+            height: 300px;
+
+            // aspect-ratio: 1/1;
+            @media screen and (max-width: 540px) {
+                width: 100%;
+            }
+        }
+    }
+
+    button {
+        margin-top: 40px;
+    }
+}
+
+#ar-button {
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    padding: 0px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #4285f4;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 18px;
+    border: 1px solid #DADCE0;
+    cursor: pointer;
+    &:hover {
+        background-color: #E8EAED;
+    }
+
+}
+
+.ar-question {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    .image {
+        width: 100px;
+        margin-bottom: 10px;
+        img {
+            width: 100%;
+        }
+    }
+    p {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--black-3);
+        margin-bottom: 20px;
+    }
+    .action-box {
+        display: flex;
+        align-items: center;
+        .action {
+            height: 40px;
+            background: #FFF;
+            border-radius: 20px;
+            border: solid 1px rgb(230, 230, 230);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 5px 25px;
+            cursor: pointer;
+            &:not(:last-of-type) {
+                margin-right: 15px;
+            }
+            &:hover {
+                transform: scale(1.1);
+            }
+            &.wrong {
+                background: red;
+                color: white;
+            }
+            &.correct {
+                background: green;
+                color: white;
+            }
+        }
+    }
+}

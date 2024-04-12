@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
+import { NewAssessment, NewTraining } from 'src/app/models/trainings';
 import { ApiService } from 'src/app/services/api.service';
 import { AudioService } from 'src/app/services/audio.service';
+import { SubSink } from 'subsink';
 
 @Component({
     selector: 'app-words-recall-training',
@@ -34,6 +36,7 @@ export class WordsRecallTrainingComponent {
         wrong: Array<string>
     }> = [];
     @Input() difficultyLevel: number | 'default' = 'default';
+    @Output() trainingComplete: EventEmitter<any> = new EventEmitter();
     constructor(
         private router: Router,
         private apiService: ApiService,
@@ -125,9 +128,9 @@ export class WordsRecallTrainingComponent {
         let rightWords: Array<string> = [];
         let wrongWords: Array<string> = [];
         this.answers.forEach((item: { text: string }) => {
-            this.words.includes(item.text.toLowerCase()) ? 
-            rightWords.push(item.text.toLowerCase()): 
-            wrongWords.push(item.text.toLowerCase());
+            this.words.includes(item.text.toLowerCase()) ?
+                rightWords.push(item.text.toLowerCase()) :
+                wrongWords.push(item.text.toLowerCase());
         })
         // Store answers
         this.correctAnswers.push({
@@ -145,15 +148,19 @@ export class WordsRecallTrainingComponent {
             this.startGame();
         }
         else {
-            console.log("Game Ended");
             this.audioService.playSuccessSound();
+            //  Get score
+            let score: number = (this.correctAnswers[this.correctAnswers.length - 1].answers.length / this.words.length) * 100; // Return in percentage
             // Save time to database
-
+            this.trainingComplete.emit({
+                score: score,
+                difficulty: this.difficultyLevel
+            })
             // Redirect to home page
             setTimeout(() => {
                 this.router.navigateByUrl("/dashboard");
             }, 2000);
-            
+
         }
     }
 }

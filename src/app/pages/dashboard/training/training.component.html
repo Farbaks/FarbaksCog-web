@@ -1,6 +1,6 @@
 <div class="main-page">
     <div class="page-title">
-        <p>👋 Welcome, Farbaks</p>
+        <p>👋 Welcome, {{user?.username | titlecase }}</p>
         <h1>
             <ng-container *ngIf="trainingType == 'assessment'">
                 TMT Cognitive Assessment
@@ -10,6 +10,9 @@
             </ng-container>
             <ng-container *ngIf="trainingType == 'numbers-recall'">
                 Numbers Recall
+            </ng-container>
+            <ng-container *ngIf="trainingType == 'object-recognition'">
+                Object Recognition
             </ng-container>
             
         </h1>
@@ -21,10 +24,13 @@
             <app-tmt-assessment class="full-width"></app-tmt-assessment>
         </ng-container>
         <ng-container *ngIf="trainingType == 'words-recall'">
-            <app-words-recall-training class="full-width"></app-words-recall-training>
+            <app-words-recall-training class="full-width" [difficultyLevel]="difficulty" (trainingComplete)="saveData('words-recall', $event)"></app-words-recall-training>
         </ng-container>
         <ng-container *ngIf="trainingType == 'numbers-recall'">
-            <app-numbers-recall-training class="full-width"></app-numbers-recall-training>
+            <app-numbers-recall-training class="full-width" [difficultyLevel]="difficulty" (trainingComplete)="saveData('numbers-recall', $event)"></app-numbers-recall-training>
+        </ng-container>
+        <ng-container *ngIf="trainingType == 'object-recognition'">
+            <app-object-recognition class="full-width" [difficultyLevel]="difficulty" (trainingComplete)="saveData('object-recognition', $event)"></app-object-recognition>
         </ng-container>
     </main>
 </div>

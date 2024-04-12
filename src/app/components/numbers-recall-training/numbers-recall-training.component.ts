@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
@@ -29,7 +29,8 @@ export class NumbersRecallTrainingComponent {
         entered: number | string,
         displayed: number
     }> = [];
-    @Input() difficultyLevel: number | 'default' = 'default';
+    @Input() difficultyLevel: number = 4;
+    @Output() trainingComplete: EventEmitter<any> = new EventEmitter();
     constructor(
         private router: Router,
         private apiService: ApiService,
@@ -68,9 +69,6 @@ export class NumbersRecallTrainingComponent {
     }
 
     async generateNumber(): Promise<void> {
-        if (this.difficultyLevel == 'default') {
-            this.difficultyLevel = 4;
-        }
         this.displayedNumber = random.int(Math.pow(10, this.difficultyLevel), Math.pow(10, this.difficultyLevel + 1));
     }
 
@@ -101,20 +99,23 @@ export class NumbersRecallTrainingComponent {
     goToNextRound() {
         if (this.currentRound < this.numberOfRounds) {
             this.currentRound += 1;
-            if (this.difficultyLevel != 'default') {
-                this.numberDisplayTimer += .5; //Increase by hald a second every round
-                // Only increase level when answer is correct
-                if(this.correctAnswers[this.correctAnswers.length - 1].displayed == this.correctAnswers[this.correctAnswers.length - 1].entered) {
-                    this.difficultyLevel += 1;
-                }
+            this.numberDisplayTimer += .5; //Increase by hald a second every round
+            // Only increase level when answer is correct
+            if (this.correctAnswers[this.correctAnswers.length - 1].displayed == this.correctAnswers[this.correctAnswers.length - 1].entered) {
+                this.difficultyLevel += 1;
             }
             // 
             this.startGame();
         }
         else {
-            console.log("Game Ended");
             this.audioService.playSuccessSound();
+            //  Get score
+            let score: number = (this.correctRounds / this.numberOfRounds) * 100; // Return in percentage
             // Save time to database
+            this.trainingComplete.emit({
+                score: score,
+                difficulty: this.difficultyLevel
+            })
 
             // Redirect to home page
             setTimeout(() => {

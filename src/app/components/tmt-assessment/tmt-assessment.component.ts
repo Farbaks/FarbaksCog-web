@@ -2,6 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TmtComponentComponent } from '../tmt-component/tmt-component.component';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SubSink } from 'subsink';
+import { TrainingsService } from 'src/app/services/trainings.service';
+import { firstValueFrom } from 'rxjs';
+import { NewAssessment } from 'src/app/models/trainings';
 
 @Component({
     selector: 'app-tmt-assessment',
@@ -18,12 +23,15 @@ export class TmtAssessmentComponent {
     startTime: any;
     timerInterval: any;
     elapsedTime: number = 0;
-    time: { tmtATime: number, tmtBTime: number} = { tmtATime: 0, tmtBTime: 0};
+    time: { tmtATime: number, tmtBTime: number } = { tmtATime: 0, tmtBTime: 0 };
     gameStep: 'loading' | 'display' = 'loading';
+    errorMessage: string = '';
+    processLoading: boolean = false;
+    subs: SubSink = new SubSink();
     constructor(
-        private router: Router
+        private router: Router,
+        private trainingsService: TrainingsService
     ) {
-
     }
 
     goToNextStep(): void {
@@ -39,7 +47,7 @@ export class TmtAssessmentComponent {
         this.gameStep = 'loading';
         setTimeout(() => {
             this.gameStep = 'display';
-            
+
             setTimeout(() => {
                 this.startTimer();
             }, 100);
@@ -64,7 +72,7 @@ export class TmtAssessmentComponent {
 
     singleAssessmentCompleted() {
         this.stopTimer();
-        if(this.step == 3) {
+        if (this.step == 3) {
             this.time.tmtATime = this.elapsedTime;
         }
         else {
@@ -75,10 +83,38 @@ export class TmtAssessmentComponent {
         }, 3000);
     }
 
-    cogAssessmentComplete() {
+    async cogAssessmentComplete() {
         // Save time to database
-        
-        // Redirect to home page
-        this.router.navigateByUrl("/dashboard");
+        await this.saveData("tmt-a");
+        await this.saveData("tmt-b");
+
+        this.goToNextStep();
+    }
+
+    async saveData(type: 'tmt-a' | 'tmt-b') {
+        if (this.processLoading) return;
+
+        this.errorMessage = '';
+
+        this.processLoading = true;
+        let data = new NewAssessment();
+        data = {
+            asessmentType: type,
+            time: +(type == 'tmt-a' ? this.time.tmtATime.toFixed(0) : this.time.tmtBTime.toFixed(0))
+        }
+        try {
+            let res: any = await firstValueFrom(this.trainingsService.addAssessment(data));
+
+            this.processLoading = false;
+
+            if (!/^20.*/.test(res.statusCode)) {
+                this.errorMessage = res.message;
+                return;
+            }
+        }
+        catch (e) {
+            this.processLoading = false;
+            this.errorMessage = "" + e;
+        }
     }
 }

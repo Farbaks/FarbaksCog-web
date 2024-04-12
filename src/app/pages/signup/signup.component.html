@@ -9,35 +9,61 @@
         <h1 class="">Create Account</h1>
         <p>Sign up to create your account.</p>
 
-        <form>
-            <div class="input-box">
+        <form [formGroup]="form" (ngSubmit)="signUp()">
+            <p class="error-message" *ngIf="errorMessage != ''">{{errorMessage}}</p>
+            <p class="success-message" *ngIf="successMessage != ''">{{successMessage}}</p>
+            <div class="input-box"
+                [class.error-input]="form['controls']['userName'].errors && form['controls']['userName'].touched">
                 <label>Username</label>
                 <div class="input-container full-width">
-                    <input type="text" placeholder="Enter your username" />
+                    <input type="text" placeholder="Enter your username" autofocus formControlName="userName" />
                 </div>
             </div>
-            <div class="input-box">
+            <div class="input-box"
+                [class.error-input]="form['controls']['age'].errors && form['controls']['age'].touched">
                 <label>Age</label>
                 <div class="input-container full-width">
-                    <input type="number" placeholder="Enter your age" />
+                    <input type="number" placeholder="Enter your age" formControlName="age" />
                 </div>
             </div>
-            <div class="input-box">
+            <div class="input-box"
+                [class.error-input]="form['controls']['gender'].errors && form['controls']['gender'].touched">
                 <label>Gender</label>
                 <div class="input-container full-width">
-                    <select>
-                        <option>Male</option>
-                        <option>Female</option>
+                    <select formControlName="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
                     </select>
                 </div>
             </div>
-            <div class="input-box">
-                <label>Password</label>
+            <div class="input-box"
+                [class.error-input]="form['controls']['trainingType'].errors && form['controls']['trainingType'].touched">
+                <label>Training Type</label>
                 <div class="input-container full-width">
-                    <input type="password" placeholder="* * * * * * * *" />
+                    <select formControlName="trainingType">
+                        <option value="default">Default</option>
+                        <option value="personalised">Personalised</option>
+                    </select>
                 </div>
             </div>
-            <button class="button-primary full-width">Sign in</button>
+            <div class="input-box"
+                [class.error-input]="form['controls']['password'].errors && form['controls']['password'].touched">
+                <label>Password</label>
+                <div class="input-container full-width">
+                    <input type="password" placeholder="******" autocomplete="new-password"
+                        formControlName="password" />
+                </div>
+
+            </div>
+            <div class="input-box"
+                [class.error-input]="form['controls']['confirmPassword'].errors && form['controls']['confirmPassword'].touched">
+                <label>Confirm Password</label>
+                <div class="input-container full-width">
+                    <input type="password" placeholder="******" autocomplete="new-password"
+                        formControlName="confirmPassword" />
+                </div>
+            </div>
+            <button class="button-primary full-width">Create Account</button>
             <p class="sub-text">Already have an account? <a routerLink="/signin">Login</a></p>
         </form>
     </div>

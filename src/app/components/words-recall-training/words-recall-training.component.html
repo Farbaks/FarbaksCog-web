@@ -44,8 +44,9 @@
                 <div class="box" *ngFor="let field of answers; index as i">
                     <input type="text" [(ngModel)]="field.text" />
                     <div class="remove" *ngIf="i+1 < answers.length" (click)="removeAnswerField(i)"> - </div>
-                    <button class="button-primary" *ngIf="i+1 == answers.length" (click)="addAnswerField()">Add extra
-                        field</button>
+                    <button class="button-primary" *ngIf="i+1 == answers.length" (click)="addAnswerField()">
+                        Add field
+                    </button>
                 </div>
             </div>
 

@@ -1,36 +1,32 @@
 <div class="main-page">
     <div class="page-title">
         <p>👋 Welcome,</p>
-        <h1>Farouk Bakre</h1>
+        <h1>{{user?.username | titlecase }}</h1>
     </div>
     <!-- User details -->
-    <div class="info-con">
+    <div class="info-con" *ngIf="report">
         <div class="item">
             <h2>
                 <img src="assets/images/check.svg" />
-                Assessments done
+                Tests done
             </h2>
-            <p>1</p>
+            <p>{{report.numOfAssessments}}</p>
         </div>
         <div class="item">
             <h2>
                 <img src="assets/images/check.svg" />
                 Sessions done
             </h2>
-            <p>5</p>
+            <p>{{report.numOfSessions}}</p>
         </div>
         <div class="detail-item">
             <p>
                 <img src="assets/images/calender.svg" />
-                Starting Date: <b>1/03/2024</b>
+                Starting Date: <b>{{report.initialAssessementDate | date:'short'}}</b>
             </p>
             <p>
                 <img src="assets/images/calender2.svg" />
-                Last Training Date: <b>1/03/2024</b>
-            </p>
-            <p>
-                <img src="assets/images/clock.svg" />
-                Net Training Time: <b>3hrs 30mins</b>
+                Last Training Date: <b>{{report.lastTrainingDate | date:'short'}}</b>
             </p>
         </div>
     </div>
@@ -39,29 +35,32 @@
     <div class="info-con">
         <h2>Trainings</h2>
         <div class="trainings">
-            <div class="training-item" routerLink="/dashboard/words-recall">
+            <div class="training-item" [class.disabled]="!canPlayTrainings.wordsRecall"
+                (click)="canPlayTrainings.wordsRecall ? goToTraining('words-recall') : null">
                 <div class="icon">
                     <img src="assets/images/word-recall.png" />
                 </div>
                 <h3>Words Recall</h3>
             </div>
-            <div class="training-item" routerLink="/dashboard/numbers-recall">
+            <div class="training-item" [class.disabled]="!canPlayTrainings.numbersRecall"
+            (click)="canPlayTrainings.numbersRecall ? goToTraining('numbers-recall') : null">
                 <div class="icon">
                     <img src="assets/images/number-recall.png" />
                 </div>
                 <h3>Numbers Recall</h3>
             </div>
-            <div class="training-item">
+            <!-- <div class="training-item">
                 <div class="icon">
                     <img src="assets/images/pattern-matching.png" />
                 </div>
                 <h3>Pattern Matching</h3>
-            </div>
-            <div class="training-item">
+            </div> -->
+            <div class="training-item" [class.disabled]="!canPlayTrainings.objectRecognition"
+            (click)="canPlayTrainings.objectRecognition ? goToTraining('object-recognition') : null">
                 <div class="icon">
                     <img src="assets/images/spatial-memory.png" />
                 </div>
-                <h3>Spatial Memory</h3>
+                <h3>Object Recognition</h3>
             </div>
         </div>
     </div>

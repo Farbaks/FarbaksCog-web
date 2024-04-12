@@ -9,20 +9,26 @@
         <h1 class="">Sign In</h1>
         <p>Sign in to access your account.</p>
 
-        <form>
-            <div class="input-box">
+        <form [formGroup]="form" (ngSubmit)="signIn()">
+            <p class="error-message" *ngIf="errorMessage != ''">{{errorMessage}}</p>
+            <p class="success-message" *ngIf="successMessage != ''">{{successMessage}}</p>
+            <div class="input-box"
+                [class.error-input]="form['controls']['userName'].errors && form['controls']['userName'].touched">
                 <label>Username</label>
                 <div class="input-container full-width">
-                    <input type="text" placeholder="Enter your username" />
+                    <input type="text" placeholder="Enter your username" autofocus formControlName="userName" />
                 </div>
             </div>
-            <div class="input-box">
+            <div class="input-box"
+                [class.error-input]="form['controls']['password'].errors && form['controls']['password'].touched">
                 <label>Password</label>
                 <div class="input-container full-width">
-                    <input type="password" placeholder="* * * * * * * *" />
+                    <input type="password" placeholder="******" autocomplete="new-password"
+                        formControlName="password" />
                 </div>
+
             </div>
-            <button class="button-primary full-width" type="button" routerLink="/dashboard">Sign in</button>
+            <button class="button-primary full-width">Sign in</button>
             <p class="sub-text">Don't have an account? <a routerLink="/signup">Create one</a></p>
         </form>
     </div>

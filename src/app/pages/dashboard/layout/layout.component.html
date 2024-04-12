@@ -1,5 +1,5 @@
 <div class="page">
-    <aside>
+    <aside [class.open]="sidebarOpen">
         <div class="logo">
             <img src="assets/images/logo.svg" />
         </div>
@@ -11,13 +11,13 @@
                 </div>
                 <p>Home</p>
             </div>
-            <div class="item" routerLink="/dashboard/assessment" routerLinkActive="active">
+            <div class="item" *ngIf="canPlayAssessment" routerLink="/dashboard/assessment" routerLinkActive="active">
                 <div class="icon">
                     <img src="assets/images/assessment.svg" />
                 </div>
                 <p>Cog Assessment</p>
             </div>
-            <div class="item logout-item" routerLink="/signin">
+            <div class="item logout-item"  (click)="logout()">
                 <div class="icon">
                     <img src="assets/images/logout.svg" />
                 </div>
@@ -25,7 +25,17 @@
             </div>
         </nav>
     </aside>
+    <header>
+        <div class="logo">
+            <img src="assets/images/logo.svg" />
+        </div>
+        <div class="burger" [class.open-sidebar]="sidebarOpen" (click)="toggleSideBar()">
+            <span></span>
+            <span></span>
+        </div>
+    </header>
     <main>
+        
         <router-outlet></router-outlet>
     </main>
 </div>

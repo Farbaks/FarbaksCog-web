@@ -12,8 +12,26 @@
         position: fixed;
         top: 0;
         left: 0;
+        @media screen and (max-width: 768px) {
+            width: 150px;
+            padding: 40px 20px;
+        }
+        @media screen and (max-width: 540px) {
+            width: 100%;
+            left: -100%;
+            top: 60px;
+        }
+        &.open {
+            left: 0%;
+        }
         .logo {
             width: 130px;
+            @media screen and (max-width: 768px) {
+                width: 80px;
+            }
+            @media screen and (max-width: 540px) {
+                display: none;
+            }
             img {
                 width: 100%;
             }
@@ -23,6 +41,12 @@
             padding: 20px 0;
             margin-top: 20px;
             border-top: solid 1px var(--grey-2);
+            @media screen and (max-width: 768px) {
+                margin-top: 0;
+            }
+            @media screen and (max-width: 540px) {
+                margin-top: 20px;
+            }
             .item {
                 width: 100%;
                 display: flex;
@@ -31,6 +55,12 @@
                 margin-bottom: 16px;
                 border-radius: 25px;
                 cursor: pointer;
+                @media screen and (max-width: 768px) {
+                    padding: 5px 10px;
+                }
+                @media screen and (max-width: 540px) {
+                    padding: 10px 15px;
+                }
                 &:hover, &.active {
                     background: var(--primary);
                     .icon {
@@ -46,6 +76,12 @@
                     margin-right: 10px;
                     filter: invert(42%) sepia(14%) saturate(304%) hue-rotate(152deg) brightness(97%) contrast(90%);
                     transition: none;
+                    @media screen and (max-width: 768px) {
+                        width: 15px;
+                    }
+                    @media screen and (max-width: 540px) {
+                        width: 20px;
+                    }
                     img {
                         width: 100%;
                     }
@@ -55,6 +91,12 @@
                     font-size: 14px;
                     font-weight: 500;
                     color: var(--grey-3);
+                    @media screen and (max-width: 768px) {
+                        font-size: 12px;
+                    }
+                    @media screen and (max-width: 540px) {
+                        font-size: 16px;
+                    }
                 }
             }
             .logout-item {
@@ -63,9 +105,65 @@
             }
         }
     }
+    header {
+        width: 100%;
+        height: 65px;
+        display: none;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-bottom: solid 1px rgb(235,235,235);
+        background: white;
+        position: fixed;
+        top: 0;
+        z-index: 100;
+        @media screen and (max-width: 540px) {
+            display: flex;
+        }
+        .logo {
+            width: 130px;
+            display: flex;
+            img {
+                width: 100%;
+            }
+        }
+        .burger {
+            display: flex;
+            flex-flow: column;
+            justify-content: flex-end;
+            width: 30px;
+            &.open-sidebar {
+                span {
+                    width: 110%;
+                    &:not(:last-of-type) {
+                        width: 80%;
+                    }
+                }
+            }
+            span {
+                width: 100%;
+                height: 3px;
+                display: block;
+                content: '';
+                border-radius: 3px;
+                background: rgb(20,20,20);
+                &:not(:last-of-type) {
+                    margin-bottom: 4px;
+                }
+            }
+        }
+    }
     main {
         width: 80%;
         min-height: 100vh;
         margin-left: 20%;
+        @media screen and (max-width: 768px) {
+            width: calc( 100% - 150px);
+        }
+        @media screen and (max-width: 540px) {
+            width: 100%;
+            margin: 65px 0 0 0;
+        }
+        
     }
 }
