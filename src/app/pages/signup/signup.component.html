@@ -63,7 +63,7 @@
                         formControlName="confirmPassword" />
                 </div>
             </div>
-            <button class="button-primary full-width">Create Account</button>
+            <button class="button-primary full-width">{{processLoading ? 'Loading...' : 'Create Account'}}</button>
             <p class="sub-text">Already have an account? <a routerLink="/signin">Login</a></p>
         </form>
     </div>

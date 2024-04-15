@@ -47,7 +47,8 @@ export class ObjectRecognitionComponent {
     startGame() {
         this.gameStep = 'loading';
         setTimeout(() => {
-            this.selectedShapeCombo = shapeCombos[2];
+            if(this.difficultyLevel > 5) this.selectedShapeCombo = shapeCombos[2];
+            else this.selectedShapeCombo = shapeCombos[Math.ceil(Math.random())];
             this.gameStep = 'display';
         }, 3000);
     }
