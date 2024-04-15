@@ -18,9 +18,9 @@ import { AudioService } from 'src/app/services/audio.service';
 })
 export class NumbersRecallTrainingComponent {
     step: number = 1;
-    numberOfRounds: number = 10;
+    numberOfRounds: number = 5;
     currentRound: number = 1;
-    numberDisplayTimer: number = 1.5;
+    numberDisplayTimer: number = 2;
     gameStep: 'loading' | 'display' | 'input' | 'end' = 'loading';
     displayedNumber: number = 0;
     enteredNumber: number | string = '';
@@ -47,6 +47,8 @@ export class NumbersRecallTrainingComponent {
     }
 
     initializeGame() {
+        // If difficulty is greater than 5, increase initial display timer
+        if(this.difficultyLevel > 5) this.numberDisplayTimer = 3;
         this.goToNextStep();
         this.startGame();
     }
@@ -99,10 +101,10 @@ export class NumbersRecallTrainingComponent {
     goToNextRound() {
         if (this.currentRound < this.numberOfRounds) {
             this.currentRound += 1;
-            this.numberDisplayTimer += .5; //Increase by hald a second every round
+            this.numberDisplayTimer += .5; //Increase by half a second every round
             // Only increase level when answer is correct
             if (this.correctAnswers[this.correctAnswers.length - 1].displayed == this.correctAnswers[this.correctAnswers.length - 1].entered) {
-                this.difficultyLevel += 1;
+                // this.difficultyLevel += .5;
             }
             // 
             this.startGame();

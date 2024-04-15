@@ -4,7 +4,7 @@
         <h1>Numbers Recall</h1>
         <p>
             Welcome to the Numbers Recall training.
-            In this training, you'll be presented with a number for 1 second. After which you have to enter the number
+            In this training, you'll be presented with a number for {{numberDisplayTimer}} second(s). After which you have to enter the number
             in the field provided.
         </p>
         <button class="button-primary" (click)="initializeGame()">Begin Training</button>
@@ -40,7 +40,7 @@
             <br />
             <div class="answer-list">
                 <div class="box">
-                    <input type="number" [(ngModel)]="enteredNumber" />
+                    <input type="number" autofocus [(ngModel)]="enteredNumber" />
                 </div>
             </div>
 

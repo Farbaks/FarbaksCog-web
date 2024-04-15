@@ -47,7 +47,7 @@ export class ObjectRecognitionComponent {
     startGame() {
         this.gameStep = 'loading';
         setTimeout(() => {
-            this.selectedShapeCombo = shapeCombos[0];
+            this.selectedShapeCombo = shapeCombos[2];
             this.gameStep = 'display';
         }, 3000);
     }
@@ -136,5 +136,13 @@ export const shapeCombos: Array<any> = [
     {
         modelUrl: "assets/3d-models/table-shapes-1.glb",
         shapes: [1, 2, 3, 4, 11, 12, 13, 14]
+    },
+    {
+        modelUrl: "assets/3d-models/table-shapes-2.glb",
+        shapes: [5, 6, 7, 8, 15, 16, 17, 18]
+    },
+    {
+        modelUrl: "assets/3d-models/table-shapes-3.glb",
+        shapes: [6, 7, 8, 9, 10, 16, 17, 18, 19, 20]
     }
 ]
