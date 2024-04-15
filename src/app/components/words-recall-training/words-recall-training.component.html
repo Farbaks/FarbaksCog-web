@@ -5,7 +5,7 @@
         <p>
             Welcome to the Words Recall training.
             In this training, you'll be presented with a list of words, one at a time (each word
-            presented for 1s). After which you have to type as many of the words you can remember. Click the button
+            presented for {{wordDisplayTimer}}s). After which you have to type as many of the words you can remember. Click the button
             below to begin the training
         </p>
         <button class="button-primary" (click)="initializeGame()">Begin Training</button>
@@ -60,7 +60,7 @@
             <p>
                 You have completed round {{currentRound}} out of {{numberOfRounds}}
                 <br>
-                You got {{correctAnswers[correctAnswers.length - 1].answers.length}} right out of {{words.length}}
+                You got <b>{{correctAnswers[correctAnswers.length - 1].answers.length}}</b>b> right out of {{words.length}}
                 <br>
                 Correct words: <b>{{correctAnswers[correctAnswers.length - 1].answers.join(', ')}}</b>
                 <br>
