@@ -94,10 +94,9 @@ export class SignupComponent {
                 }
                 
                 this.successMessage = res.message;
-                this.generalService.saveUser(res.data);
 
                 setTimeout(() => {
-                    this.router.navigateByUrl('/dashboard');
+                    this.router.navigateByUrl('/signin');
                 }, 1500);
             },
             error: (error: any) => {
