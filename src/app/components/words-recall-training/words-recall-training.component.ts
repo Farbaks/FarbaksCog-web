@@ -75,12 +75,12 @@ export class WordsRecallTrainingComponent {
     }
 
     calculateWordParameters(difficultyLevel: number | 'default'): { numWords: number, minLength: number } {
-        const baseNumWords = 3;
+        const baseNumWords = 4;
         const baseMinLength = 3;
         let numWords = baseNumWords;
         let minLength = baseMinLength;
         if (typeof (difficultyLevel) == 'number') {
-            numWords = Math.ceil(baseNumWords + (difficultyLevel * 0.5)); // Increase by 0.5 per difficulty level
+            // numWords = Math.ceil(baseNumWords + (difficultyLevel * 0.5)); // Increase by 0.5 per difficulty level
             minLength = Math.ceil(baseMinLength + (difficultyLevel * 0.5)); // Increase by 0.5 per difficulty level
         }
 
