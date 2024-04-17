@@ -30,6 +30,22 @@
             </p>
         </div>
     </div>
+    <ng-container *ngIf="canPlayTrainings.assessment">
+        <br>
+        <div class="info-con">
+            <h2>Cognitive Assessment</h2>
+            <div class="trainings">
+                <div class="training-item" [class.disabled]="!canPlayTrainings.assessment"
+                    (click)="canPlayTrainings.assessment ? goToTraining('assessment') : null">
+                    <div class="icon">
+                        <img src="assets/images/pattern-matching.png" />
+                    </div>
+                    <h3>TMT Assessment</h3>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    
     <!-- Games -->
     <br>
     <div class="info-con">

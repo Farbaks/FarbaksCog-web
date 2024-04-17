@@ -47,6 +47,7 @@ export class HomeComponent {
         this.canPlayTrainings.wordsRecall = await this.checkTrainingsCanBePlayed("words-recall");
         this.canPlayTrainings.numbersRecall = await this.checkTrainingsCanBePlayed("numbers-recall");
         this.canPlayTrainings.objectRecognition = await this.checkTrainingsCanBePlayed("object-recognition");
+        this.canPlayTrainings.assessment = await this.checkTrainingsCanBePlayed("assessment");
     }
 
     async checkTrainingsCanBePlayed(type: 'words-recall' | 'numbers-recall' | 'object-recognition' | 'assessment') {
@@ -54,7 +55,7 @@ export class HomeComponent {
         return res.data?.canPlay;
     }
 
-    goToTraining(type: 'words-recall' | 'numbers-recall' | 'object-recognition') {
+    goToTraining(type: 'words-recall' | 'numbers-recall' | 'object-recognition' | 'assessment') {
         this.router.navigateByUrl(`/dashboard/${type}`)
     }
 
