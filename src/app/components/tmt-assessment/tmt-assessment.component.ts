@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TmtComponentComponent } from '../tmt-component/tmt-component.component';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubSink } from 'subsink';
 import { TrainingsService } from 'src/app/services/trainings.service';
@@ -13,7 +13,8 @@ import { NewAssessment } from 'src/app/models/trainings';
     standalone: true,
     imports: [
         CommonModule,
-        TmtComponentComponent
+        TmtComponentComponent,
+        RouterModule
     ],
     templateUrl: './tmt-assessment.component.html',
     styleUrl: './tmt-assessment.component.scss'
